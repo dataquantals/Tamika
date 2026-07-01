@@ -1,25 +1,10 @@
+import { getCategories, getProductsByType } from '../data/products';
+import { productCard, productControls } from '../storefront';
 import { bottomNavBar, pageFooter, pageHero, topAppBar } from './shared';
 
-const salaulaItems = Array.from({ length: 25 }, (_, index) => {
-  const number = index + 1;
-  const names = [
-    'Curated Salaula Find',
-    'Archive Market Piece',
-    'Pre-Loved Statement',
-    'Restored Everyday Essential',
-    'Found Wardrobe Edit',
-  ];
-  const categories = ['Outerwear', 'Dresses', 'Tops', 'Tailoring', 'Accessories'];
-
-  return {
-    image: `/assets/salaula/item-${String(number).padStart(2, '0')}.jpeg`,
-    name: `${names[index % names.length]} ${String(number).padStart(2, '0')}`,
-    category: categories[index % categories.length],
-    price: `ZK ${[240, 310, 390, 460, 520][index % 5]}`,
-  };
-});
-
 export function salaulaPage(): string {
+  const salaulaItems = getProductsByType('salaula');
+
   return `
 ${topAppBar()}
 <main class="overflow-x-hidden">
@@ -55,8 +40,9 @@ ${pageHero('Curated Pre-Loved', 'Salaula', 'A refined take on Zambian second-han
       </div>
       <a class="font-label-caps text-label-caps border-b border-primary pb-1 hover:opacity-50 transition-opacity uppercase" href="/appointment" data-link>Request Sourcing</a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-mobile">
-      ${salaulaItems.map((item) => findCard(item.name, item.category, item.price, item.image)).join('')}
+    ${productControls(getCategories('salaula'))}
+    <div data-product-grid class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-mobile">
+      ${salaulaItems.map(productCard).join('')}
     </div>
   </div>
 </section>
@@ -80,16 +66,4 @@ function principle(number: string, title: string, text: string): string {
       <p class="font-body-md text-body-md text-on-surface-variant mt-1">${text}</p>
     </div>
   </div>`;
-}
-
-function findCard(name: string, category: string, price: string, image: string): string {
-  return `
-  <article class="group cursor-pointer">
-    <div class="aspect-[3/4] mb-stack-md overflow-hidden bg-surface-container">
-      <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="${image}" alt="${name}" loading="lazy" />
-    </div>
-    <p class="font-label-caps text-label-caps text-on-surface-variant uppercase">${category}</p>
-    <h4 class="font-body-lg text-body-lg text-primary mt-1">${name}</h4>
-    <p class="font-body-md text-body-md text-on-surface-variant mt-1">${price}</p>
-  </article>`;
 }

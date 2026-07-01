@@ -1,6 +1,10 @@
+import { getCategories, getProductsByType } from '../data/products';
+import { productCard, productControls } from '../storefront';
 import { bottomNavBar, pageFooter, pageHero, topAppBar } from './shared';
 
 export function collectionPage(): string {
+  const atelierProducts = getProductsByType('atelier');
+
   return `
 ${topAppBar()}
 <main class="overflow-x-hidden">
@@ -21,11 +25,9 @@ ${pageHero('Shop By Mood', 'The Collection', 'A complete edit of tailoring, even
       </div>
       <a class="font-label-caps text-label-caps border-b border-primary pb-1 hover:opacity-50 transition-opacity uppercase" href="/appointment" data-link>Private Order</a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-mobile">
-      ${productCard('Sculpted Wool Blazer', 'Tailoring', 'ZK 1,250', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAqe-MRpxzg_fcGGpUdx5aer0PUEKTOdoCuAQeIq0mbjIYkjqUgP5VTW1HPLqaEjrosZDerurAMK-wVHMDOQkq2vN-Mohq-2sIdlP9dRVDSXyDFEX5hN0GZ1D1l10_krMIg7jTrEn9FXubRJPizyrU9WCmsQ6PeuRoTV00EEaYPq2c4QFN1fKzxPpQ25n6mrhZVODozLbQ1H_bfw1tg1-gX9cnwotjfnqlqQD0MIlbUtha8D2N5gFchiHcvdsR2snN1J_4O-4yHDUuE')}
-      ${productCard('Monolith Tote Bag', 'Accessories', 'ZK 2,400', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDEBtFeVezR9dvJaO3ft2VxcMtytEWeibmT98QFRKkTlnOj5xXvrzp5ceZK6cWCjo_wndlaRmmRvFZ2wN2eBCzAdzGXNTL3-4HsSez6DqBZ3rsFf-I8TRpLMrE_trCV4AGReHUDKQFpBn0sEi_BuTYI7pFnxb3GRQ2QiNIEobQDC_hTGu2TqTccuV3Leb60seEPedQCEOLSXrxlVvrmC4N05keFwdGY0bs-qfp9h7zLx6wOX4nSfjV-JU6NfwySJL1x9al8vbwQnyIa')}
-      ${productCard('Urban Chelsea Boot', 'Footwear', 'ZK 890', 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1uXHvS21tsdlJnNJ5mhy4uciZGw_cg5llfC35gf0muZQS6Yjd_RU9qe8-OUbWI5cNnOmFmZR_LV014R-W_nbMdXizeIH1ixagCnKfeFQ1eB0qU4JlSD1IZXxnYmUVMRq8W1nhfTXxmVAhT7lwNLz3vnHhzwnMUZDll-SyjhytsbKr6ZrXdu0Nds31L89bLOY54-Jbvx7C8X31x_dTZwi_5GGR0bMGRq09-EpkIKnEn-XH4okWpgJZk8OxFmAJcoxhYfnolwuF7_sE')}
-      ${productCard('Cashmere Column Knit', 'Knitwear', 'ZK 1,080', 'https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?auto=format&fit=crop&w=900&q=80')}
+    ${productControls(getCategories('atelier'))}
+    <div data-product-grid class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-mobile">
+      ${atelierProducts.map(productCard).join('')}
     </div>
   </div>
 </section>
@@ -46,17 +48,5 @@ function categoryCard(number: string, title: string, text: string, image: string
         <p class="font-body-md text-body-md text-on-primary/80">${text}</p>
       </div>
     </div>
-  </article>`;
-}
-
-function productCard(name: string, category: string, price: string, image: string): string {
-  return `
-  <article class="group cursor-pointer">
-    <div class="aspect-[3/4] mb-stack-md overflow-hidden bg-surface-container">
-      <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${image}" alt="${name}" />
-    </div>
-    <p class="font-label-caps text-label-caps text-on-surface-variant uppercase">${category}</p>
-    <h4 class="font-body-lg text-body-lg text-primary mt-1">${name}</h4>
-    <p class="font-body-md text-body-md text-on-surface-variant mt-1">${price}</p>
   </article>`;
 }

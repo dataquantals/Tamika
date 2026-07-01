@@ -1,23 +1,9 @@
-import { sideNavDrawer } from './shared';
+import { topAppBar } from './shared';
 
 export function homePage(): string {
   return `
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl transition-all duration-300 ease-in-out h-16 flex justify-between items-center px-margin-mobile">
-<div class="flex items-center">
-<button type="button" data-nav-open class="text-primary hover:opacity-70 transition-opacity" aria-label="Open navigation menu">
-<span class="material-symbols-outlined" data-icon="menu">menu</span>
-</button>
-</div>
-<a href="/" data-link class="font-display-lg-mobile text-display-lg-mobile tracking-widest uppercase text-primary">TÀMIKA</a>
-<div class="flex items-center">
-<a href="/appointment" data-link class="text-primary hover:opacity-70 transition-opacity" aria-label="Book appointment">
-<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
-</a>
-</div>
-</header>
-${sideNavDrawer()}
-<main class="pt-0 overflow-x-hidden">
+${topAppBar()}
+<main class="pt-16 lg:pt-28 overflow-x-hidden">
 <!-- Hero Section (Parallax-Ready) -->
 <section class="relative h-[795px] w-full flex items-center justify-center overflow-hidden bg-surface-container-low" id="hero">
 <!-- Background Layer -->
@@ -83,7 +69,7 @@ ${sideNavDrawer()}
 <!-- Editorial Feature (Bento Style) -->
 <section class="px-margin-mobile mt-section-gap mb-section-gap grid grid-cols-1 md:grid-cols-12 gap-gutter-mobile">
 <div class="md:col-span-12 mb-stack-lg">
-<h3 class="font-display-lg-mobile text-display-lg-mobile text-primary text-center">Stories</h3>
+<a href="/salaula" data-link class="block font-display-lg-mobile text-display-lg-mobile text-primary text-center hover:opacity-60 transition-opacity">Salaula</a>
 </div>
 <div class="md:col-span-7 h-[500px] relative overflow-hidden group">
 <div class="absolute inset-0 bg-cover bg-center" data-alt="A wide-angle landscape shot of a model walking through a field of tall, dry grass at dusk. The sky is a gradient of deep indigo and soft violet. The model wears a long, flowing silk dress that catches the wind. The mood is ethereal, poetic, and serene, representing the brand's connection to nature and movement." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCiLtoIndEVWfgTwHeS0uVFBV1i7B2Uk0ZCyev70Y-_lmk6SGn8qiBwzHuvqKlCVgtcAKGGWQHwBgarQFzhZCrwL4bMDTMVecK2XZiZfGEH8pu6RwZBg1_J0qjeGIFDXOiyEHD1rmm9lpVvye5zb5Cwv6J9FMlWxj06wY591PVFGT8wckynusvCZMyaQklInPayvIV7b0qNyyzrBEbuvjSdjuMRaSi2dZeBNnoNOPzP-ciflx7srkwqaX0aXuoCsHtUuR64Ouc4IVWn')">
@@ -198,7 +184,7 @@ ${sideNavDrawer()}
 <div class="p-8">
 <span class="material-symbols-outlined text-[32px] mb-stack-md text-primary">local_shipping</span>
 <h4 class="font-headline-md text-headline-md text-primary mb-stack-sm">Concierge Delivery</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">Priority handling, careful packaging, and appointment-based delivery for collector clients.</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Experience premium service with priority handling, secure packaging, and appointment-based delivery. We partner with trusted platforms such as Yango, In-Drive, and others to ensure your items arrive safely, on time, and with the care they deserve.</p>
 </div>
 </div>
 </div>

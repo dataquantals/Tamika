@@ -9,7 +9,7 @@ ${pageHero('Private Atelier', 'Services', 'Personal guidance, made-to-measure re
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 border border-outline-variant/30">
     ${service('styler', 'Personal Styling', 'A private wardrobe edit with silhouettes selected around your proportions, calendar, and pace.', '01')}
     ${service('straighten', 'Made To Measure', 'Signature pieces adjusted in length, structure, and finishing by our partner ateliers.', '02')}
-    ${service('local_shipping', 'Concierge Delivery', 'Priority handling, careful packaging, and appointment-based delivery for collector clients.', '03', false)}
+    ${service('local_shipping', 'Concierge Delivery', 'Experience premium service with priority handling, secure packaging, and appointment-based delivery. We partner with trusted platforms such as Yango, In-Drive, and others to ensure your items arrive safely, on time, and with the care they deserve.', '03', false)}
   </div>
 </section>
 <section class="px-margin-mobile pb-section-gap">

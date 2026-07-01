@@ -1,11 +1,14 @@
 import { appointmentPage } from './pages/appointment';
 import { collectionPage } from './pages/collection';
 import { homePage, setupHomePageInteractions } from './pages/home';
+import { kidsPage } from './pages/kids';
 import { journalPage } from './pages/journal';
 import { lookbookPage } from './pages/lookbook';
 import { salaulaPage } from './pages/salaula';
 import { servicesPage } from './pages/services';
 import { setupSideNavigation } from './pages/shared';
+import { setupStorefront, storefrontShell } from './storefront';
+import { setupWeddingPageInteractions, weddingPage } from './pages/wedding';
 
 type Route = {
   title: string;
@@ -15,7 +18,7 @@ type Route = {
 
 const routes: Record<string, Route> = {
   '/': {
-    title: 'ELÉVATION | Luxury Fashion Editorial',
+    title: 'TÀMIKA',
     render: homePage,
     afterRender: setupHomePageInteractions,
   },
@@ -23,9 +26,38 @@ const routes: Record<string, Route> = {
     title: 'Collection | TÀMIKA',
     render: collectionPage,
   },
+  '/kids': {
+    title: 'Kids Clothing | TÀMIKA',
+    render: kidsPage,
+  },
   '/salaula': {
     title: 'Salaula | TÀMIKA',
     render: salaulaPage,
+  },
+  '/wedding': {
+    title: 'Wedding | TÀMIKA',
+    render: weddingPage,
+    afterRender: setupWeddingPageInteractions,
+  },
+  '/wedding/bride': {
+    title: 'Wedding — Bride | TÀMIKA',
+    render: weddingPage,
+    afterRender: setupWeddingPageInteractions,
+  },
+  '/wedding/groom': {
+    title: 'Wedding — Groom | TÀMIKA',
+    render: weddingPage,
+    afterRender: setupWeddingPageInteractions,
+  },
+  '/wedding/party': {
+    title: 'Wedding — Bridesmaids / Groomsmen | TÀMIKA',
+    render: weddingPage,
+    afterRender: setupWeddingPageInteractions,
+  },
+  '/wedding/kids': {
+    title: 'Wedding — Kids | TÀMIKA',
+    render: weddingPage,
+    afterRender: setupWeddingPageInteractions,
   },
   '/lookbook': {
     title: 'Lookbook | TÀMIKA',
@@ -83,8 +115,9 @@ function renderCurrentRoute(): void {
 
   const route = routes[window.location.pathname] ?? routes['/'];
   document.title = route.title;
-  app.innerHTML = route.render();
+  app.innerHTML = route.render() + storefrontShell();
   window.scrollTo({ top: 0 });
   setupSideNavigation();
+  setupStorefront();
   route.afterRender?.();
 }
